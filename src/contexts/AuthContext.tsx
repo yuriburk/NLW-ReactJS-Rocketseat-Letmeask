@@ -1,4 +1,10 @@
-import { useState, createContext, useContext, useCallback } from 'react';
+import {
+  useState,
+  createContext,
+  useContext,
+  useCallback,
+  useEffect,
+} from 'react';
 
 import { firebase, auth } from '../services/firebase';
 
@@ -18,12 +24,17 @@ const AuthContext = createContext({} as AuthContextProps);
 export const AuthProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<User>();
 
-  const signInWithGoogle = useCallback(async () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
+  useEffect(() => {
+    auth.onAuthStateChanged(googleUser => {
+      if (googleUser) {
+        setGoogleUserInfo(googleUser);
+      }
+    });
+  }, []);
 
-    const result = await auth.signInWithPopup(provider);
-    if (result.user) {
-      const { displayName, photoURL, uid } = result.user;
+  const setGoogleUserInfo = (googleUser: firebase.User | null) => {
+    if (googleUser) {
+      const { displayName, photoURL, uid } = googleUser;
 
       if (!displayName || !photoURL) {
         throw new Error('Missing information from Google Account.');
@@ -31,6 +42,13 @@ export const AuthProvider: React.FC = ({ children }) => {
 
       setUser({ name: displayName, avatar: photoURL, id: uid });
     }
+  };
+
+  const signInWithGoogle = useCallback(async () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+
+    const result = await auth.signInWithPopup(provider);
+    setGoogleUserInfo(result?.user);
   }, []);
 
   return (
