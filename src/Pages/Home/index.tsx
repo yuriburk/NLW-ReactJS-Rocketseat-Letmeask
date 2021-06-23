@@ -4,6 +4,7 @@ import { auth, firebase } from '../../services/firebase';
 import illustrationImg from '../../assets/images/illustration.svg';
 import logoImg from '../../assets/images/logo.svg';
 import googleIconImg from '../../assets/images/google-icon.svg';
+import useAuthContext from '../../contexts/AuthContext';
 import {
   Container,
   AsideContainer,
@@ -22,11 +23,13 @@ import {
 
 export function Home() {
   const history = useHistory();
+  const { user, signInWithGoogle } = useAuthContext();
 
   async function handleCreateNewRoom() {
-    const provider = new firebase.auth.GoogleAuthProvider();
+    if (!user) {
+      await signInWithGoogle();
+    }
 
-    await auth.signInWithPopup(provider);
     history.push('/rooms/new');
   }
 

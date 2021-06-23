@@ -2,12 +2,15 @@ import { BrowserRouter, Route } from 'react-router-dom';
 
 import { Home } from './Pages/Home';
 import { NewRoom } from './Pages/NewRoom';
+import Providers from './contexts';
 
 function App() {
   return (
     <BrowserRouter>
-      <Route path="/" exact component={Home} />
-      <Route path="/rooms/new" component={NewRoom} />
+      <Providers>
+        <Route path="/" exact component={Home} />
+        <Route path="/rooms/new" component={NewRoom} />
+      </Providers>
     </BrowserRouter>
   );
 }
