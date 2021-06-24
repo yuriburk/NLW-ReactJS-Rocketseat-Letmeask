@@ -1,12 +1,11 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 
 import { Home } from './Pages/Home';
 import { NewRoom } from './Pages/NewRoom';
 import { Room } from './Pages/Room';
+import { AdminRoom } from './Pages/AdminRoom';
 import Providers from './contexts';
-
-export const notifyError = (text: string) => toast.error(text);
 
 function App() {
   return (
@@ -16,6 +15,7 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route path="/rooms/new" component={NewRoom} />
           <Route path="/rooms/:id" component={Room} />
+          <Route path="/admin/rooms/:id" component={AdminRoom} />
         </Switch>
       </BrowserRouter>
       <Toaster position="top-right" />

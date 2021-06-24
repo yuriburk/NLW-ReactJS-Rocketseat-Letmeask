@@ -1,7 +1,7 @@
 import { useState, FormEvent } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 
-import { notifyError } from '../../App';
+import { notifyError } from '../../utils';
 import logoImg from '../../assets/images/logo.svg';
 import { Button } from '../../components/Button';
 import { RoomCode } from '../../components/RoomCode';
@@ -26,7 +26,10 @@ import {
   UserName,
   FooterText,
   LoginButton,
+  LikeButton,
 } from './styles';
+import { LikeIcon } from '../../components/LikeIcon';
+import { UserQuestion } from '../../models';
 
 export function Room() {
   const params = useParams<{ id: string }>();
@@ -67,6 +70,25 @@ export function Room() {
 
   function navigateLogin() {
     history.push('/');
+  }
+
+  async function handleLikeQuestion(question: UserQuestion) {
+    if (!user) {
+      return;
+    }
+
+    console.log(question.likeId);
+    if (question.likeId) {
+      await database
+        .ref(
+          `rooms/${roomId}/questions/${question.id}/likes/${question.likeId}`,
+        )
+        .remove();
+      return;
+    }
+    database.ref(`rooms/${roomId}/questions/${question.id}/likes`).push({
+      authorId: user.id,
+    });
   }
 
   return (
@@ -121,7 +143,15 @@ export function Room() {
             key={question.id}
             content={question.content}
             author={question.author}
-          />
+          >
+            <LikeButton
+              onClick={() => handleLikeQuestion(question)}
+              aria-label="Marcar como gostei"
+            >
+              {question.likesCount > 0 && question.likesCount}{' '}
+              <LikeIcon liked={!!question.likeId} />
+            </LikeButton>
+          </Question>
         ))}
       </Main>
     </Container>

@@ -1,6 +1,6 @@
 import { useState, createContext, useCallback, useEffect } from 'react';
 
-import { notifyError } from '../App';
+import { notifyError } from '../utils';
 import { User } from '../models';
 import { firebase, auth } from '../services/firebase';
 

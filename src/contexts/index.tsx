@@ -1,7 +1,10 @@
 import { AuthProvider } from './AuthContext';
+import { DialogProvider } from './DialogContext';
 
 const Providers: React.FC = ({ children }) => (
-  <AuthProvider>{children}</AuthProvider>
+  <AuthProvider>
+    <DialogProvider>{children}</DialogProvider>
+  </AuthProvider>
 );
 
 export default Providers;

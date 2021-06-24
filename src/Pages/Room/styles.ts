@@ -66,6 +66,7 @@ export const FooterContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-top: 16px;
+  width: 100%;
 `;
 
 export const UserInfo = styled.div`
@@ -100,4 +101,16 @@ export const LoginButton = styled.button`
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
+`;
+
+export const LikeButton = styled.button`
+  display: flex;
+  align-items: flex-end;
+  color: #835afd;
+  gap: 8px;
+  transition: filter 0.2s;
+
+  &:hover {
+    filter: brightness(0.8);
+  }
 `;

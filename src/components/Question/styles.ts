@@ -23,6 +23,14 @@ export const Footer = styled.footer`
 
 export const FooterContainer = styled.div`
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const AuthorContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   align-items: center;
 `;
 
@@ -36,4 +44,12 @@ export const AuthorName = styled.span`
   margin-left: 8px;
   color: #737380;
   font-size: 14px;
+`;
+
+export const ButtonsContainer = styled.div`
+  button {
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+  }
 `;

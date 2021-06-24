@@ -1163,7 +1163,7 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.1.2", "@babel/runtime@^7.12.1", "@babel/runtime@^7.12.5", "@babel/runtime@^7.9.2":
+"@babel/runtime@^7.1.2", "@babel/runtime@^7.12.1", "@babel/runtime@^7.12.5", "@babel/runtime@^7.14.0", "@babel/runtime@^7.9.2":
   version "7.14.6"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.14.6.tgz#535203bc0892efc7dec60bdc27b2ecf6e409062d"
   integrity sha512-/PCB2uJ7oM44tz8YhC4Z/6PeOKXp4K588f+5M3clr1M4zbqztlo0XEfJ2LEzj/FgwfgGcIdl8n7YYjTCI0BYwg==
@@ -1876,6 +1876,91 @@
   version "1.1.0"
   resolved "https://ab-inbev.pkgs.visualstudio.com/GHQ_B2B_Delta/_packaging/nfa-services/npm/registry/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
+
+"@react-spring/animated@~9.2.0":
+  version "9.2.3"
+  resolved "https://ab-inbev.pkgs.visualstudio.com/GHQ_B2B_Delta/_packaging/nfa-services/npm/registry/@react-spring/animated/-/animated-9.2.3.tgz#271226099d356b7b6d99240375dd8f62f450e997"
+  integrity sha1-JxImCZ01a3ttmSQDdd2PYvRQ6Zc=
+  dependencies:
+    "@react-spring/shared" "~9.2.0"
+    "@react-spring/types" "~9.2.0"
+
+"@react-spring/core@~9.2.0":
+  version "9.2.3"
+  resolved "https://ab-inbev.pkgs.visualstudio.com/GHQ_B2B_Delta/_packaging/nfa-services/npm/registry/@react-spring/core/-/core-9.2.3.tgz#b3926ef8f2694bfb251318d7b44abac1fa5321d0"
+  integrity sha1-s5Ju+PJpS/slExjXtEq6wfpTIdA=
+  dependencies:
+    "@react-spring/animated" "~9.2.0"
+    "@react-spring/shared" "~9.2.0"
+    "@react-spring/types" "~9.2.0"
+
+"@react-spring/konva@~9.2.0":
+  version "9.2.3"
+  resolved "https://ab-inbev.pkgs.visualstudio.com/GHQ_B2B_Delta/_packaging/nfa-services/npm/registry/@react-spring/konva/-/konva-9.2.3.tgz#7a0a1cd7b2b365c7e9c6a14002c3ec6f37f3663a"
+  integrity sha1-egoc17KzZcfpxqFAAsPsbzfzZjo=
+  dependencies:
+    "@react-spring/animated" "~9.2.0"
+    "@react-spring/core" "~9.2.0"
+    "@react-spring/shared" "~9.2.0"
+    "@react-spring/types" "~9.2.0"
+
+"@react-spring/native@~9.2.0":
+  version "9.2.3"
+  resolved "https://ab-inbev.pkgs.visualstudio.com/GHQ_B2B_Delta/_packaging/nfa-services/npm/registry/@react-spring/native/-/native-9.2.3.tgz#a98c43fad6322e9c77e0fad602f83caf56f45c93"
+  integrity sha1-qYxD+tYyLpx34PrWAvg8r1b0XJM=
+  dependencies:
+    "@react-spring/animated" "~9.2.0"
+    "@react-spring/core" "~9.2.0"
+    "@react-spring/shared" "~9.2.0"
+    "@react-spring/types" "~9.2.0"
+
+"@react-spring/rafz@~9.2.0":
+  version "9.2.3"
+  resolved "https://ab-inbev.pkgs.visualstudio.com/GHQ_B2B_Delta/_packaging/nfa-services/npm/registry/@react-spring/rafz/-/rafz-9.2.3.tgz#ffde337240b6880a2488d3ca67e4b01688881793"
+  integrity sha1-/94zckC2iAokiNPKZ+SwFoiIF5M=
+
+"@react-spring/shared@~9.2.0":
+  version "9.2.3"
+  resolved "https://ab-inbev.pkgs.visualstudio.com/GHQ_B2B_Delta/_packaging/nfa-services/npm/registry/@react-spring/shared/-/shared-9.2.3.tgz#eaa4a4e6bf4f43d10b4a5c920a917e84047ac50e"
+  integrity sha1-6qSk5r9PQ9ELSlySCpF+hAR6xQ4=
+  dependencies:
+    "@react-spring/rafz" "~9.2.0"
+    "@react-spring/types" "~9.2.0"
+
+"@react-spring/three@~9.2.0":
+  version "9.2.3"
+  resolved "https://ab-inbev.pkgs.visualstudio.com/GHQ_B2B_Delta/_packaging/nfa-services/npm/registry/@react-spring/three/-/three-9.2.3.tgz#1871a6c7dcb20ab284b8ce4af1805c86c9bb27ed"
+  integrity sha1-GHGmx9yyCrKEuM5K8YBchsm7J+0=
+  dependencies:
+    "@react-spring/animated" "~9.2.0"
+    "@react-spring/core" "~9.2.0"
+    "@react-spring/shared" "~9.2.0"
+    "@react-spring/types" "~9.2.0"
+
+"@react-spring/types@~9.2.0":
+  version "9.2.3"
+  resolved "https://ab-inbev.pkgs.visualstudio.com/GHQ_B2B_Delta/_packaging/nfa-services/npm/registry/@react-spring/types/-/types-9.2.3.tgz#08b5ca1cb262328529ee558796395f073b6029b0"
+  integrity sha1-CLXKHLJiMoUp7lWHljlfBztgKbA=
+
+"@react-spring/web@~9.2.0":
+  version "9.2.3"
+  resolved "https://ab-inbev.pkgs.visualstudio.com/GHQ_B2B_Delta/_packaging/nfa-services/npm/registry/@react-spring/web/-/web-9.2.3.tgz#b9037719b489863ca2ad39caaacff6d315bbaea8"
+  integrity sha1-uQN3GbSJhjyirTnKqs/20xW7rqg=
+  dependencies:
+    "@react-spring/animated" "~9.2.0"
+    "@react-spring/core" "~9.2.0"
+    "@react-spring/shared" "~9.2.0"
+    "@react-spring/types" "~9.2.0"
+
+"@react-spring/zdog@~9.2.0":
+  version "9.2.3"
+  resolved "https://ab-inbev.pkgs.visualstudio.com/GHQ_B2B_Delta/_packaging/nfa-services/npm/registry/@react-spring/zdog/-/zdog-9.2.3.tgz#f41cf4f99ddde1cbb9a4c76202a4d2bf8d4b9886"
+  integrity sha1-9Bz0+Z3d4cu5pMdiAqTSv41LmIY=
+  dependencies:
+    "@react-spring/animated" "~9.2.0"
+    "@react-spring/core" "~9.2.0"
+    "@react-spring/shared" "~9.2.0"
+    "@react-spring/types" "~9.2.0"
 
 "@rollup/plugin-node-resolve@^7.1.1":
   version "7.1.3"
@@ -8636,6 +8721,13 @@ pnp-webpack-plugin@1.6.4:
   dependencies:
     ts-pnp "^1.1.6"
 
+polished@^4.1.3:
+  version "4.1.3"
+  resolved "https://ab-inbev.pkgs.visualstudio.com/GHQ_B2B_Delta/_packaging/nfa-services/npm/registry/polished/-/polished-4.1.3.tgz#7a3abf2972364e7d97770b827eec9a9e64002cfc"
+  integrity sha1-ejq/KXI2Tn2XdwuCfuyanmQALPw=
+  dependencies:
+    "@babel/runtime" "^7.14.0"
+
 portfinder@^1.0.26:
   version "1.0.28"
   resolved "https://registry.yarnpkg.com/portfinder/-/portfinder-1.0.28.tgz#67c4622852bd5374dd1dd900f779f53462fac778"
@@ -9754,6 +9846,18 @@ react-scripts@4.0.3:
     workbox-webpack-plugin "5.1.4"
   optionalDependencies:
     fsevents "^2.1.3"
+
+react-spring@^9.2.3:
+  version "9.2.3"
+  resolved "https://ab-inbev.pkgs.visualstudio.com/GHQ_B2B_Delta/_packaging/nfa-services/npm/registry/react-spring/-/react-spring-9.2.3.tgz#ff644f8857782389b47171239ee8dead372ebd46"
+  integrity sha1-/2RPiFd4I4m0cXEjnujerTcuvUY=
+  dependencies:
+    "@react-spring/core" "~9.2.0"
+    "@react-spring/konva" "~9.2.0"
+    "@react-spring/native" "~9.2.0"
+    "@react-spring/three" "~9.2.0"
+    "@react-spring/web" "~9.2.0"
+    "@react-spring/zdog" "~9.2.0"
 
 react@^17.0.2:
   version "17.0.2"

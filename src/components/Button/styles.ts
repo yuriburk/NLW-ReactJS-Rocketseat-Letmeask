@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const StyledButton = styled.button`
+export const StyledButton = styled.button<{ isOutlined?: boolean }>`
   height: 50px;
   border-radius: 8px;
   font-weight: 500;
@@ -26,4 +26,12 @@ export const StyledButton = styled.button`
     opacity: 0.4;
     cursor: not-allowed;
   }
+
+  ${props =>
+    props.isOutlined &&
+    css`
+      background: #fff;
+      border: 1px solid #835afd;
+      color: #835afd;
+    `}
 `;

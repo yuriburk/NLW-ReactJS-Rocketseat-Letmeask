@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react';
 
 import { FirebaseQuestions, UserQuestion } from '../models';
 import { database } from '../services/firebase';
+import useAuth from './useAuth';
 
 function useRoom(roomId: string) {
+  const { user } = useAuth();
   const [questions, setQuestions] = useState<UserQuestion[]>([]);
   const [title, setTitle] = useState('');
 
@@ -12,7 +14,6 @@ function useRoom(roomId: string) {
 
     roomRef.on('value', room => {
       const databaseRoom = room.val();
-      console.log(databaseRoom);
       const firebaseQuestions = (databaseRoom.questions ??
         {}) as FirebaseQuestions;
 
@@ -24,14 +25,22 @@ function useRoom(roomId: string) {
             author: value.author,
             isHighlighted: value.isHighlighted,
             isAnswered: value.isAnswered,
+            likesCount: Object.values(value.likes ?? {}).length,
+            likeId: Object.entries(value.likes ?? {}).find(
+              ([_, like]) => like.authorId === user?.id,
+            )?.[0],
           } as UserQuestion),
       );
 
       setQuestions(parsedQuestions);
 
       setTitle(databaseRoom.title);
+
+      return () => {
+        roomRef.off();
+      };
     });
-  }, [roomId]);
+  }, [roomId, user?.id]);
 
   return { questions, title };
 }
