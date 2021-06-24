@@ -85,11 +85,14 @@ export const CenterContainer = styled.div`
 `;
 
 export const SocialButton = styled(StyledButton)`
+  margin-top: 64px;
   background: #ea4335;
+  width: 100%;
 `;
 
 export const Button = styled(StyledButton)`
   margin-top: 16px;
+  width: 100%;
 `;
 
 export const Form = styled.form``;
@@ -101,8 +104,5 @@ export const Input = styled.input`
   background: #fff;
   border: 1px solid #a8a8b3;
   width: 100%;
-
-  &:focus {
-    outline-color: #a8a8b3;
-  }
+  outline-color: #a8a8b3;
 `;

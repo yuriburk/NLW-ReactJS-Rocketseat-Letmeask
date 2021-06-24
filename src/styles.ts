@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
     * {
@@ -14,7 +14,11 @@ const GlobalStyle = createGlobalStyle`
 
     body, input, button, textarea {
         font: 400 16px 'Roboto', sans-serif;
-    }
-`
 
-export default GlobalStyle
+        &:focus {
+            outline-color: #a8a8b3;
+        }
+    }
+`;
+
+export default GlobalStyle;

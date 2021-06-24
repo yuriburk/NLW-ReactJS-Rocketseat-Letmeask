@@ -1,10 +1,10 @@
+import { FormEvent, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { auth, firebase } from '../../services/firebase';
 import illustrationImg from '../../assets/images/illustration.svg';
 import logoImg from '../../assets/images/logo.svg';
 import googleIconImg from '../../assets/images/google-icon.svg';
-import useAuthContext from '../../contexts/AuthContext';
+import useAuth from '../../contexts/AuthContext';
 import {
   Container,
   AsideContainer,
@@ -20,10 +20,12 @@ import {
   Form,
   Input,
 } from './styles';
+import { database } from '../../services/firebase';
 
 export function Home() {
   const history = useHistory();
-  const { user, signInWithGoogle } = useAuthContext();
+  const { user, signInWithGoogle } = useAuth();
+  const [roomCode, setRoomCode] = useState('');
 
   async function handleCreateNewRoom() {
     if (!user) {
@@ -31,6 +33,23 @@ export function Home() {
     }
 
     history.push('/rooms/new');
+  }
+
+  async function handleJoinRoom(event: FormEvent) {
+    event.preventDefault();
+
+    if (roomCode.trim() === '') {
+      return;
+    }
+
+    const roomRef = await database.ref(`rooms/${roomCode}`).get();
+
+    if (!roomRef.exists()) {
+      alert('Room does not exists.');
+      return;
+    }
+
+    history.push(`/rooms/${roomCode}`);
   }
 
   return (
@@ -53,8 +72,13 @@ export function Home() {
             </SocialButton>
           </Content>
           <CenterContainer>ou entre em uma sala</CenterContainer>
-          <Form>
-            <Input type="text" placeholder="Digite o código da sala" />
+          <Form onSubmit={handleJoinRoom}>
+            <Input
+              type="text"
+              placeholder="Digite o código da sala"
+              onChange={event => setRoomCode(event.target.value)}
+              value={roomCode}
+            />
             <Button type="submit">Entrar</Button>
           </Form>
         </MainContainer>

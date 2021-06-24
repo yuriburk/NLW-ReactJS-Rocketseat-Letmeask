@@ -6,6 +6,7 @@ import {
   useEffect,
 } from 'react';
 
+import { notifyError } from '../App';
 import { firebase, auth } from '../services/firebase';
 
 type User = {
@@ -25,11 +26,15 @@ export const AuthProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<User>();
 
   useEffect(() => {
-    auth.onAuthStateChanged(googleUser => {
+    const unsubscribe = auth.onAuthStateChanged(googleUser => {
       if (googleUser) {
         setGoogleUserInfo(googleUser);
       }
     });
+
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   const setGoogleUserInfo = (googleUser: firebase.User | null) => {
@@ -37,7 +42,8 @@ export const AuthProvider: React.FC = ({ children }) => {
       const { displayName, photoURL, uid } = googleUser;
 
       if (!displayName || !photoURL) {
-        throw new Error('Missing information from Google Account.');
+        notifyError('Missing information from Google Account.');
+        return;
       }
 
       setUser({ name: displayName, avatar: photoURL, id: uid });
@@ -58,8 +64,8 @@ export const AuthProvider: React.FC = ({ children }) => {
   );
 };
 
-const useAuthContext = () => {
+const useAuth = () => {
   return useContext(AuthContext);
 };
 
-export default useAuthContext;
+export default useAuth;

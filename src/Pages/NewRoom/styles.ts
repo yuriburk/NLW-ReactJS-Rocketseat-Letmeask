@@ -68,6 +68,7 @@ export const Content = styled.div``;
 
 export const Button = styled(StyledButton)`
   margin-top: 16px;
+  width: 100%;
 `;
 
 export const Form = styled.form``;
@@ -79,10 +80,6 @@ export const Input = styled.input`
   background: #fff;
   border: 1px solid #a8a8b3;
   width: 100%;
-
-  &:focus {
-    outline-color: #a8a8b3;
-  }
 `;
 
 export const BottomText = styled.p`
