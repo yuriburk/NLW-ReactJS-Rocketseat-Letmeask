@@ -1,12 +1,14 @@
-import { FormEvent, useState } from 'react';
+import { useState, FormEvent } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 
 import { notifyError } from '../../App';
 import logoImg from '../../assets/images/logo.svg';
 import { Button } from '../../components/Button';
 import { RoomCode } from '../../components/RoomCode';
-import useAuth from '../../contexts/AuthContext';
+import { Question } from '../../components/Question';
+import useAuth from '../../hooks/useAuth';
 import { database } from '../../services/firebase';
+import useRoom from '../../hooks/useRoom';
 import {
   Container,
   Header,
@@ -20,16 +22,22 @@ import {
   FormTextarea,
   FooterContainer,
   UserInfo,
+  Avatar,
   UserName,
   FooterText,
   LoginButton,
 } from './styles';
 
 export function Room() {
-  const { user } = useAuth();
-  const history = useHistory();
   const params = useParams<{ id: string }>();
   const roomId = params.id;
+
+  const history = useHistory();
+
+  const { user } = useAuth();
+
+  const { questions, title } = useRoom(roomId);
+
   const [newQuestion, setNewQuestion] = useState('');
 
   async function handleCreateNewQuestion(event: FormEvent) {
@@ -54,6 +62,7 @@ export function Room() {
     };
 
     database.ref(`rooms/${roomId}/questions`).push(question);
+    setNewQuestion('');
   }
 
   function navigateLogin() {
@@ -71,8 +80,12 @@ export function Room() {
 
       <Main>
         <RoomContainer>
-          <Title>Sala React</Title>
-          <QuestionsText>4 perguntas</QuestionsText>
+          <Title>Sala {title}</Title>
+          {questions.length > 0 && (
+            <QuestionsText>
+              {questions.length} pergunta{questions.length > 1 && 's'}
+            </QuestionsText>
+          )}
         </RoomContainer>
 
         <Form onSubmit={handleCreateNewQuestion}>
@@ -85,7 +98,7 @@ export function Room() {
           <FooterContainer>
             {user ? (
               <UserInfo>
-                <Image src={user.avatar} alt={user.name} />
+                <Avatar src={user.avatar} alt={user.name} />
                 <UserName>{user.name}</UserName>
               </UserInfo>
             ) : (
@@ -102,6 +115,14 @@ export function Room() {
             </Button>
           </FooterContainer>
         </Form>
+
+        {questions.map(question => (
+          <Question
+            key={question.id}
+            content={question.content}
+            author={question.author}
+          />
+        ))}
       </Main>
     </Container>
   );

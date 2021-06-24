@@ -46,7 +46,9 @@ export const QuestionsText = styled.span`
   font-size: 14px;
 `;
 
-export const Form = styled.form``;
+export const Form = styled.form`
+  margin-bottom: 32px;
+`;
 
 export const FormTextarea = styled.textarea`
   width: 100%;
@@ -54,7 +56,7 @@ export const FormTextarea = styled.textarea`
   padding: 16px;
   border-radius: 8px;
   background: #fefefe;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
   resize: vertical;
   min-height: 130px;
 `;
@@ -66,9 +68,23 @@ export const FooterContainer = styled.div`
   margin-top: 16px;
 `;
 
-export const UserInfo = styled.div``;
+export const UserInfo = styled.div`
+  display: flex;
+  align-items: center;
+`;
 
-export const UserName = styled.text``;
+export const Avatar = styled.img`
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+`;
+
+export const UserName = styled.span`
+  margin-left: 8px;
+  color: #29292e;
+  font-weight: 500;
+  font-size: 14px;
+`;
 
 export const FooterText = styled.span`
   font-size: 14px;
