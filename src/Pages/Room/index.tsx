@@ -9,6 +9,8 @@ import { Question } from '../../components/Question';
 import useAuth from '../../hooks/useAuth';
 import { database } from '../../services/firebase';
 import useRoom from '../../hooks/useRoom';
+import { LikeIcon } from '../../components/Icons';
+import { UserQuestion } from '../../models';
 import {
   Container,
   Header,
@@ -28,8 +30,6 @@ import {
   LoginButton,
   LikeButton,
 } from './styles';
-import { LikeIcon } from '../../components/LikeIcon';
-import { UserQuestion } from '../../models';
 
 export function Room() {
   const params = useParams<{ id: string }>();
@@ -77,7 +77,6 @@ export function Room() {
       return;
     }
 
-    console.log(question.likeId);
     if (question.likeId) {
       await database
         .ref(
@@ -143,6 +142,8 @@ export function Room() {
             key={question.id}
             content={question.content}
             author={question.author}
+            isAnswered={question.isAnswered}
+            isHighlighted={question.isHighlighted}
           >
             <LikeButton
               onClick={() => handleLikeQuestion(question)}

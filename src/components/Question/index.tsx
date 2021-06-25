@@ -14,12 +14,23 @@ import {
 type QuestionProps = {
   content: string;
   author: Author;
+  isAnswered?: boolean;
+  isHighlighted?: boolean;
   children?: React.ReactChild;
 };
 
-export function Question({ content, author, children }: QuestionProps) {
+export function Question({
+  content,
+  author,
+  isAnswered,
+  isHighlighted,
+  children,
+}: QuestionProps) {
   return (
-    <Container>
+    <Container
+      isAnswered={isAnswered}
+      isHighlighted={isHighlighted && !isAnswered}
+    >
       <Text>{content}</Text>
       <Footer>
         <FooterContainer>

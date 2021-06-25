@@ -1,13 +1,30 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.div<{
+  isAnswered?: boolean;
+  isHighlighted?: boolean;
+}>`
   background: #fefefe;
   border-radius: 8px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
   padding: 24px;
+
   & + & {
     margin-top: 8px;
   }
+
+  ${props =>
+    props.isAnswered &&
+    css`
+      background: #dbdcdd;
+    `}
+
+  ${props =>
+    props.isHighlighted &&
+    css`
+      background: #f4f0ff;
+      border: 1px solid #835adf;
+    `}
 `;
 
 export const Text = styled.p`
@@ -47,9 +64,16 @@ export const AuthorName = styled.span`
 `;
 
 export const ButtonsContainer = styled.div`
+  display: flex;
+  gap: 16px;
+
   button {
     border: 0;
     background: transparent;
     cursor: pointer;
+    transition: filter 0.2s;
+    &:hover {
+      filter: brightness(0.8);
+    }
   }
 `;

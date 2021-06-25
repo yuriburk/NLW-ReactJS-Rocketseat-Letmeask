@@ -56,6 +56,10 @@ export const QuestionsText = styled.span`
   font-size: 14px;
 `;
 
-export const DeleteButton = styled.button``;
+export const CheckButton = styled.button``;
 
-export const RemoveIcon = styled.img``;
+export const Icon = styled.img``;
+
+export const HighlightButton = styled.button``;
+
+export const DeleteButton = styled.button``;
